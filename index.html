@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic 8-Ball</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #333;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            display: inline-block;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+        }
+        label {
+            font-size: 1.2em;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: none;
+            width: 80%;
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .decision {
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #ffeb3b;
+        }
+        .magic-8-ball {
+            display: block;
+            margin: 20px auto;
+            width: 200px;
+            height: 200px;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/3/31/Magic_eight_ball.png') no-repeat center center;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Magic 8-Ball: Deciding your fate, one cryptic answer at a time!</h1>
+        <div class="magic-8-ball"></div>
+        <form id="questionForm" method="POST">
+            <label for="question">Ask your question:</label><br>
+            <input type="text" id="question" name="question" required><br><br>
+            <button type="submit">Get Decision</button>
+        </form>
+        {% if decision %}
+        <div class="decision">
+            <p><strong>Decision:</strong> {{ decision }}</p>
+        </div>
+        {% else %}
+        <div class="decision" style="display:none;">
+            <p><strong>Decision:</strong></p>
+        </div>
+        {% endif %}
+    </div>
+    <script>
+        // Show decision after form submission
+        document.getElementById('questionForm').addEventListener('submit', function() {
+            document.querySelector('.decision').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
